@@ -12,13 +12,16 @@ const TaskList = (props) => {
 
   async function taskListSaveTask(data) {
     data = { user_id: props.user_id, ...data };
-    const response = await fetch("http://127.0.0.1:5050/tasks/add", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }).catch((err) => {
+    const response = await fetch(
+      "https://netlify--melodious-horse-998da2.netlify.app/tasks/add",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    ).catch((err) => {
       console.log(err);
     });
     const res = await response.json();
@@ -35,7 +38,7 @@ const TaskList = (props) => {
 
   async function retrieveTasks() {
     const response = await fetch(
-      `http://127.0.0.1:5050/tasks/get-all/${props.user_id}`
+      `https://netlify--melodious-horse-998da2.netlify.app/tasks/get-all/${props.user_id}`
     ).catch((err) => {
       console.log(err);
     });
@@ -48,9 +51,12 @@ const TaskList = (props) => {
   }
 
   async function removeTask(id) {
-    const response = await fetch(`http://127.0.0.1:5050/tasks/delete/${id}`, {
-      method: "DELETE",
-    }).catch((err) => {
+    const response = await fetch(
+      `https://netlify--melodious-horse-998da2.netlify.app/tasks/delete/${id}`,
+      {
+        method: "DELETE",
+      }
+    ).catch((err) => {
       console.log(err);
     });
     await response.json();
@@ -59,7 +65,7 @@ const TaskList = (props) => {
 
   async function editTask(data) {
     const response = await fetch(
-      `http://127.0.0.1:5050/tasks/edit/${data.id}`,
+      `https://netlify--melodious-horse-998da2.netlify.app/tasks/edit/${data.id}`,
       {
         method: "PUT",
         headers: {

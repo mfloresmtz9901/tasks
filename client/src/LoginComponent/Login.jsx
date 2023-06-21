@@ -24,13 +24,16 @@ const Login = (props) => {
       email: email,
       password: password,
     };
-    const response = await fetch("http://127.0.0.1:5050/users/get-user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    }).catch((err) => {
+    const response = await fetch(
+      "https://netlify--melodious-horse-998da2.netlify.app/users/get-user",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    ).catch((err) => {
       console.log(err);
     });
     const data = await response.json();

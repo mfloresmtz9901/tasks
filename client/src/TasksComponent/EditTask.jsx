@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const EditTask = (props) => {
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -32,7 +32,7 @@ const EditTask = (props) => {
     props.onTaskEdit(data);
   };
 
-  async function retrieveTasks() {
+  const fetchData = useCallback(async () => {
     const response = await fetch(
       `https://tasks-back.onrender.com/tasks/get/${props.taskId}`
     ).catch((err) => {
@@ -42,12 +42,11 @@ const EditTask = (props) => {
     setEnteredTitle(data.title);
     setEnteredDescription(data.description);
     setEnteredStatus(data.status);
-    console.log(data);
-  }
+  }, [props.taskId]);
 
   useEffect(() => {
-    retrieveTasks();
-  }, []);
+    fetchData();
+  }, [fetchData]);
 
   return (
     <div className="card mx-auto">

@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import NewTask from "./NewTask";
 import Task from "./Task";
 import TaskFilter from "./TaskFilter";
 
 const TaskList = (props) => {
+  const userId = props.user_id;
   const [tasks, setTasks] = useState("");
   const [filteredTasks, setFilteredTasks] = useState("");
   const [formMessage, setFormMessage] = useState("");
@@ -118,12 +119,26 @@ const TaskList = (props) => {
     setFilteredTasks(tasksFiltered);
   };
 
+  const fetchData = useCallback(async () => {
+    const response = await fetch(
+      `https://tasks-back.onrender.com/tasks/get-all/${userId}`
+    ).catch((err) => {
+      console.log(err);
+    });
+    const data = await response.json();
+    const info = data.map((element) => {
+      return { date: new Date(element.createdAt), ...element };
+    });
+    setTasks(info);
+    setFilteredTasks(info);
+  }, [userId]);
+
   useEffect(() => {
-    retrieveTasks();
+    fetchData();
     setTimeout(() => {
       setLoading(false);
     }, "500");
-  }, []);
+  }, [fetchData]);
 
   return (
     <div>

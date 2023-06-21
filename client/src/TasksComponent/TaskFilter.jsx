@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const TaskFilter = (props) => {
+  const filterFunc = props.onSetFilter;
   const [enteredText, setEnteredText] = useState("");
   const [selectedStatus, setSelectedStatus] = useState("all");
   const [selectedOrder, setSelectedOrder] = useState("ascending");
@@ -17,18 +18,18 @@ const TaskFilter = (props) => {
     setSelectedOrder(event.target.value);
   };
 
-  const filterData = () => {
+  const filterData = useCallback(() => {
     const filters = {
       content: enteredText,
       status: selectedStatus,
       order: selectedOrder,
     };
-    props.onSetFilter(filters);
-  };
+    filterFunc(filters);
+  }, [enteredText, selectedStatus, selectedOrder, filterFunc]);
 
   useEffect(() => {
     filterData();
-  }, [enteredText, selectedStatus, selectedOrder]);
+  }, [enteredText, selectedStatus, selectedOrder, filterData]);
 
   return (
     <div className="card">

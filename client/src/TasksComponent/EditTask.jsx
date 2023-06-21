@@ -34,7 +34,7 @@ const EditTask = (props) => {
 
   async function retrieveTasks() {
     const response = await fetch(
-      `https://netlify--melodious-horse-998da2.netlify.app/tasks/get/${props.taskId}`
+      `https://tasks-back.onrender.com/tasks/get/${props.taskId}`
     ).catch((err) => {
       console.log(err);
     });

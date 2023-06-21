@@ -7,7 +7,9 @@ const Navbar = (props) => {
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-          <a className="navbar-brand">Tasks List</a>
+          <a className="navbar-brand" href="./">
+            Tasks List
+          </a>
         </div>
         <div className="d-flex">
           <button

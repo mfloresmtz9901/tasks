@@ -12,16 +12,13 @@ const TaskList = (props) => {
 
   async function taskListSaveTask(data) {
     data = { user_id: props.user_id, ...data };
-    const response = await fetch(
-      "https://netlify--melodious-horse-998da2.netlify.app/tasks/add",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    ).catch((err) => {
+    const response = await fetch("https://tasks-back.onrender.com/tasks/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }).catch((err) => {
       console.log(err);
     });
     const res = await response.json();
@@ -38,7 +35,7 @@ const TaskList = (props) => {
 
   async function retrieveTasks() {
     const response = await fetch(
-      `https://netlify--melodious-horse-998da2.netlify.app/tasks/get-all/${props.user_id}`
+      `https://tasks-back.onrender.com/tasks/get-all/${props.user_id}`
     ).catch((err) => {
       console.log(err);
     });
@@ -52,7 +49,7 @@ const TaskList = (props) => {
 
   async function removeTask(id) {
     const response = await fetch(
-      `https://netlify--melodious-horse-998da2.netlify.app/tasks/delete/${id}`,
+      `https://tasks-back.onrender.com/tasks/delete/${id}`,
       {
         method: "DELETE",
       }
@@ -65,7 +62,7 @@ const TaskList = (props) => {
 
   async function editTask(data) {
     const response = await fetch(
-      `https://netlify--melodious-horse-998da2.netlify.app/tasks/edit/${data.id}`,
+      `https://tasks-back.onrender.com/tasks/edit/${data.id}`,
       {
         method: "PUT",
         headers: {

@@ -25,7 +25,7 @@ const Login = (props) => {
       password: password,
     };
     const response = await fetch(
-      "https://netlify--melodious-horse-998da2.netlify.app/users/get-user",
+      "https://tasks-back.onrender.com/users/get-user",
       {
         method: "POST",
         headers: {

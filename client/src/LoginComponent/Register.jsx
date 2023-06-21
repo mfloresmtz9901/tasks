@@ -30,16 +30,13 @@ const Register = (props) => {
       email: email,
       password: password,
     };
-    const response = await fetch(
-      "https://netlify--melodious-horse-998da2.netlify.app/users/add",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }
-    ).catch((err) => {
+    const response = await fetch("https://tasks-back.onrender.com/users/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    }).catch((err) => {
       console.log(err);
     });
     const data = await response.json();

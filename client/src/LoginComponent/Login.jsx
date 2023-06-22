@@ -40,7 +40,7 @@ const Login = (props) => {
     if (response.status === 200) {
       props.onSetCookie(data);
     } else {
-      props.onError(data);
+      props.onError({ message: "Invalid credentials" });
     }
   }
 

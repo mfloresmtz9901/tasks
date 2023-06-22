@@ -10,6 +10,7 @@ const TaskList = (props) => {
   const [formMessage, setFormMessage] = useState("");
   const [formMessageStyle, setformMessageStyle] = useState("");
   const [loading, setLoading] = useState(true);
+  // const [taskListOrder, setTaskListOrder] = useState("ascending");
 
   async function taskListSaveTask(data) {
     data = { user_id: props.user_id, ...data };
@@ -106,15 +107,9 @@ const TaskList = (props) => {
       });
     }
 
-    if (filters.order === "ascending") {
-      setFilteredTasks(() => {
-        return [...tasksFiltered.sort((a, b) => a.date - b.date)];
-      });
-    } else {
-      tasksFiltered = tasksFiltered.sort((a, b) => b.date - a.date);
-    }
-
-    console.log(tasksFiltered);
+    // if (filters.order !== taskListOrder) {
+    //   tasksFiltered.reverse();
+    // }
 
     setFilteredTasks(tasksFiltered);
   };
